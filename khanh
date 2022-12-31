@@ -1,0 +1,139 @@
+#include<iostream> //cout,cin
+#include<conio.h> //getch()
+#include<string.h> //string,char
+#include<iomanip> //setw
+using namespace std;
+const int salaryDr = 500000; // tien luong 1 ngay cua bac si
+const int salarySurgery = 2000000; // tien luong 1 ca phau thua
+const int salaryNs = 200000; // tien luong 1 ngay cua y ta
+const int salaryDuty = 500000; // tien luong 1 dem truc
+
+
+//                                          name:                   Ten can bo
+//                                          tel:                    So dien thoai
+//                                          dob:                    ngay//thang//nam sinh
+//                                          unit:                   Chuc vu
+//                                          dayDr / dayNs:          So ngay lam viec cau bac si / y ta
+//                                          numOS/ numNS:           So ca phau thuat / so ngay truc dem
+
+
+
+
+
+//Lop Person
+class Person{
+private:
+    string name,unit;
+    int tel, dob,salary;
+public:
+    Person( string name, int dob, int tel, string unit){
+    this -> name = name;
+    this -> dob = dob;
+    this -> tel = tel;
+    this -> unit = unit;
+    }
+    string getname(){
+        return name;
+    }
+    int getdob(){
+        return dob;
+    }
+    int gettel(){
+        return tel;
+    }
+    string getunit(){
+        return unit;
+    }
+
+};
+
+
+
+
+//Lop Doctor
+class Doctor: public Person{
+private:
+    int numOS, dayDr;
+public:
+    Doctor(string name, int dob, int tel, string unit, int dayDr, int numOS ): Person(name,dob,tel,unit){
+        this -> dayDr = dayDr;
+        this -> numOS = numOS;
+        }
+        int getdayDr(){
+            return dayDr;
+        }
+        int getnumOS(){
+            return numOS;
+        }
+};
+
+
+
+
+
+//Lop Nurse
+class Nurse : public Person{
+private:
+    int numNS, dayNs;
+public:
+    Nurse(string name, int dob, int tel, string unit, int dayNs, int numNS ): Person(name,dob,tel,unit){
+        this-> dayNs = dayNs;
+        this-> numNS = numNS;
+    }
+    int getdayNs(){
+        return dayNs;
+    }
+    int getnumNS(){
+        return numNS;
+    }
+};
+
+
+
+
+// Ham main
+int main(){
+    int option;
+
+
+    while(1){
+
+		cout<<"\tCHUONG TRINH QUAN LY NHAN VIEN.\t"<<endl;;
+		cout<<"========================MENU=======================================\n";
+		cout<<"==                                                               ==\n";
+		cout<<"==        1.Them mot can bo.                                     ==\n";
+		cout<<"==        2.Chinh sua thong tin can bo.                          ==\n";
+		cout<<"==        3.Xoa mot can bo.                                      ==\n";
+		cout<<"==        4.Tim kiem can bo theo ten.                            ==\n";
+		cout<<"==        5.Tim kiem can bo theo ngay sinh.                      ==\n";
+		cout<<"==        6.Tim kiem can bo theo don vi.                         ==\n";
+		cout<<"==        7.Can bo co luong hang thang lon hon X (vnd).          ==\n";
+		cout<<"==        8.Danh sach va thong tin can bo trong thang X.         ==\n";
+		cout<<"==        8.in danh sach can bo.                                 ==\n";
+		cout<<"==        9.Exit.                                                ==\n";
+		cout<<"===================================================================\n";
+	  cout<<" \t Nhap lua chon cua ban: ";cin>>option;
+    switch(option){
+        case 1:
+
+        case 2:
+
+        case 3:
+
+        case 4:
+
+        case 5:
+
+        case 6:
+
+        case 7:
+
+        case 8:
+
+        case 9:
+
+        default:
+            cout << "Khong tim thay du lieu ban nhap, xin moi nhap lai";
+    }
+    }
+}
