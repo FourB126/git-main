@@ -88,8 +88,8 @@ int main() {
 		cout<<"==        6.Tìm kiếm cán bộ theo đơn vị.                         ==\n";
 		cout<<"==        7.Cán bộ có lương tháng lơn hơn X(vnd).                ==\n";
 		cout<<"==        8.Danh sách và thông tin cán bộ trong tháng X.         ==\n";
-		cout<<"==        8.In danh sách cán bộ                                  ==\n";
-		cout<<"==        9.Exit.                                                ==\n";
+		cout<<"==        9.In danh sách cán bộ                                  ==\n";
+		cout<<"==        10.Exit.                                               ==\n";
 		cout<<"===================================================================\n";
 	    cout<<" \t Nhập lựa chọn của bạn: ";cin>>option;
     switch(option){
@@ -113,13 +113,15 @@ int main() {
             system("\npause");
             break;
 
-        case 8:
+      	case 8:
+
+
+        case 9:
             printlistPerson();
             system("\npause");
             break;
-
-        case 9:exit(0);
-
+        case 10:
+            exit(0);
         default:
             cout << "Không tìm tháy dữ liệu bạn nhập, xin mời nhập lại.";
     }
