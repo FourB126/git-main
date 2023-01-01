@@ -118,7 +118,7 @@ int main() {
             system("\npause");
             break;
 
-        case 9:
+        case 9:exit(0);
 
         default:
             cout << "Khong tim thay du lieu ban nhap, xin moi nhap lai";
