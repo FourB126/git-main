@@ -9,19 +9,6 @@ using namespace std;
 vector<Person*> listPerson;
 fstream MyFile;
 
-void displayMenu() {
-    cout << "==================================================================== \n";
-    cout << " \t\t\t  QUẢN LÍ BỆNH VIỆN \t \n";
-    cout << "==================================================================== \n";
-    cout << " 1.Thêm một cán bộ\n";
-    cout << " 2.Chỉnh sửa thông tin cán bộ\n";
-    cout << " 3.Xoá một cán bộ \n";
-    cout << " 4.Tìm kiếm cán bộ  \n";
-    cout << " 5.Danh sách cán bộ có lương hàng tháng lớn hơn X(nghìn vnd) \n";
-    cout << " 6.Danh sách và thông tin cán bộ của bệnh viện trong tháng X\n";
-    cout << " 7.In danh sách cán bộ\n";
-    cout << " 0.Thoát!";
-}
 
 void addPerson() {
     Person temp;
@@ -85,7 +72,56 @@ void printlistPerson() {
 }
 
 int main() {
-    for (int i=0;i<3;i++) {
-        addPerson();
+    system("chcp 65001");
+
+    int option;
+    while(1){
+
+        cout<<"\tCHƯƠNG TRÌNH QUẢN LÝ BỆNH VIỆN.\t"<<endl;;
+		cout<<"========================MENU=======================================\n";
+		cout<<"==                                                               ==\n";
+		cout<<"==        1.Thêm một cán bộ                                      ==\n";
+		cout<<"==        2.Chỉnh sửa thông tin cán bộ.                          ==\n";
+		cout<<"==        3.Xóa một cán bộ.                                      ==\n";
+		cout<<"==        4.Tìm kiếm cán bộ theo tên.                            ==\n";
+		cout<<"==        5.Tìm kiếm cán bộ theo ngày sinh.                      ==\n";
+		cout<<"==        6.Tìm kiếm cán bộ theo đơn vị.                         ==\n";
+		cout<<"==        7.Cán bộ có lương tháng lơn hơn X(vnd).                ==\n";
+		cout<<"==        8.Danh sách và thông tin cán bộ trong tháng X.         ==\n";
+		cout<<"==        8.In danh sách cán bộ                                  ==\n";
+		cout<<"==        9.Exit.                                                ==\n";
+		cout<<"===================================================================\n";
+	    cout<<" \t Nhập lựa chọn của bạn: ";cin>>option;
+    switch(option){
+        case 1:
+            addPerson();
+            system("\npause");
+            break;
+
+        case 2:
+
+        case 3:
+
+        case 4:
+
+        case 5:
+
+        case 6:
+
+        case 7:
+            FindPersonHaveSalaryHigherThanX();
+            system("\npause");
+            break;
+
+        case 8:
+            printlistPerson();
+            system("\npause");
+            break;
+
+        case 9:
+
+        default:
+            cout << "Khong tim thay du lieu ban nhap, xin moi nhap lai";
+    }
     }
 }
