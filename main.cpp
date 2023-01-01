@@ -121,7 +121,7 @@ int main() {
         case 9:exit(0);
 
         default:
-            cout << "Khong tim thay du lieu ban nhap, xin moi nhap lai";
+            cout << "Không tìm tháy dữ liệu bạn nhập, xin mời nhập lại.";
     }
     }
 }
