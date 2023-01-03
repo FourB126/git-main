@@ -1,0 +1,39 @@
+#include "Person.hpp"
+
+using namespace std;
+
+const int salaryNs = 200000; // tien luong 1 ngay cua y ta
+const int salaryShift = 500000; // tien luong 1 dem truc
+class Nurse : public Person {
+    private:
+        int dayNs; // so ngay lam viec cua y ta
+        int shift; // so ngay truc dem 
+    public:
+        Nurse() {}
+        Nurse(string name,string dob, string tel, string unit, int dayNs, int shift) : Person(name,dob,tel,unit) {
+            this->dayNs = dayNs;
+            this->shift = shift;
+        }
+        long salary() {
+            return dayNs*salaryNs+shift*salaryShift;
+        }
+        void display() {
+          cout<<setw(20)<<std::left<<"\nHo va Ten"<<setw(10)<<std::left<<" |"
+            <<setw(15)<<std::left<<"Ngay sinh"<<setw(5)<<std::left<<" |"
+            <<setw(15)<<std::left<<"So dien thoai"<<setw(7)<<std::left<<" |"
+            <<setw(10)<<std::left<<"Don vi"<<setw(10)<<std::left<<" |"
+            <<setw(10)<<std::left<<"Ngay di lam "<<setw(5)<<std::left<<" |"
+            <<setw(17)<<std::left<<"So ngay truc dem "<<setw(7)<<std::left<<"    |"
+            <<setw(15)<<std::left<<"Tien luong (vnd) "<<setw(7)<<std::left<<" |"<<endl;
+            //cout<<"________________________________________________________________________________________________________________________________________________________"<<endl;
+
+            cout<<setw(20)<<std::left<<getName()<<setw(10)<<std::left<<"|"
+            <<setw(15)<<std::left<<getDob()<<setw(5)<<std::left<<"|"
+            <<setw(15)<<std::left<<getTel()<<setw(7)<<std::left<<"|"
+            <<setw(10)<<std::left<<getUnit()<<setw(14)<<std::left<<"|"
+            <<setw(6)<<std::left<<dayNs<<setw(5)<<std::left<<"  |           "
+            <<setw(10)<<std::left<<shift<<setw(7)<<std::left<<"   |"
+            <<setw(15)<<std::left<<salary()<<setw(7)<<std::left<<"  |"<<endl;
+        }
+        ~Nurse() {};
+};
