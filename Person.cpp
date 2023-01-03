@@ -27,10 +27,14 @@ string Person::getTel() {
 }
 long Person::salary() {return 0;}
 void Person::display() {
-    cout << "Tên: " << name << endl;
-    cout << "Ngày sinh: " << dob << endl;
-    cout << "Số điện thoại: " << tel << endl;
-    cout << "Đơn vị: " << unit << endl;
+    cout<<setw(20)<<std::left<<"\nHo va Ten"<<setw(10)<<std::left<<" |"
+    <<setw(15)<<std::left<<"Ngay sinh"<<setw(5)<<std::left<<" |"
+    <<setw(15)<<std::left<<"So dien thoai"<<setw(7)<<std::left<<" |"
+    <<setw(10)<<std::left<<"Don vi"<<setw(10)<<std::left<<" |"<<endl;
+    cout<<setw(20)<<std::left<<name<<setw(10)<<std::left<<"|"
+    <<setw(15)<<std::left<<dob<<setw(5)<<std::left<<"|"
+    <<setw(15)<<std::left<<tel<<setw(7)<<std::left<<"|"
+    <<setw(10)<<std::left<<unit<<setw(14)<<std::left<<"|";
 }
 istream& operator >> (istream& in, Person& a) {
     cout << "Nhập tên của cán bộ: ";getline(in,a.name);
