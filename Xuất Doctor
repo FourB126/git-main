@@ -1,0 +1,46 @@
+#include "Person.hpp"
+
+using namespace std;
+
+const int salaryDr = 500000; // tien luong 1 ngay cua bac si
+const int salarySurgery = 2000000; // tien luong 1 ca phau thua
+ 
+class Doctor : public Person {
+    private:
+        int dayDr; // so ngay lam viec
+        int surgery; // so ca phau thuat
+    public:
+        Doctor() {}
+        Doctor(string name,string dob,string tel,string unit, int dayDr, int surgery) : Person(name,dob,tel,unit) {
+            this->dayDr = dayDr;
+            this->surgery = surgery;
+        }
+        long salary() {
+            return dayDr*salaryDr+surgery*salarySurgery;
+        }
+        int getDayDr() {
+            return this->dayDr;
+        }
+        int getSurgery() {
+            return this->surgery;
+        }
+        void display() {
+              cout<<setw(20)<<std::left<<"\nHo va Ten"<<setw(10)<<std::left<<" |"
+            <<setw(15)<<std::left<<"Ngay sinh"<<setw(5)<<std::left<<" |"
+            <<setw(15)<<std::left<<"So dien thoai"<<setw(7)<<std::left<<" |"
+            <<setw(10)<<std::left<<"Don vi"<<setw(10)<<std::left<<" |"
+            <<setw(10)<<std::left<<"Ngay di lam "<<setw(5)<<std::left<<" |"
+            <<setw(17)<<std::left<<"So ca phau thuat"<<setw(7)<<std::left<<"    |"
+            <<setw(15)<<std::left<<"Tien luong (vnd) "<<setw(7)<<std::left<<" |"<<endl;
+            //cout<<"________________________________________________________________________________________________________________________________________________________"<<endl;
+
+            cout<<setw(20)<<std::left<<getName()<<setw(10)<<std::left<<"|"
+            <<setw(15)<<std::left<<getDob()<<setw(5)<<std::left<<"|"
+            <<setw(15)<<std::left<<getTel()<<setw(7)<<std::left<<"|"
+            <<setw(10)<<std::left<<getUnit()<<setw(14)<<std::left<<"|"
+            <<setw(6)<<std::left<<dayDr<<setw(5)<<std::left<<"  |           "
+            <<setw(10)<<std::left<<surgery<<setw(7)<<std::left<<"   |"
+            <<setw(15)<<std::left<<salary()<<setw(7)<<std::left<<"  |"<<endl;
+        }
+        ~Doctor() {};
+};
