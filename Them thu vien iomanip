@@ -1,25 +1,202 @@
-#pragma once
 #include <iostream>
-#include <vector>
-#include<iomanip>
+#include <fstream>
+#include "Person.cpp"
+#include "Doctor.cpp"
+#include "Nurse.cpp"
+
 using namespace std;
 
-class Person {
-    private:
-        string name; 
-        string dob; // date of birth
-        string tel; // phone number
-        string unit; // work unit
-    public:
-        Person();
-        Person(string name,string dob,string tel,string unit);
-        Person(const Person &temp);
-        string getDob();
-        string getUnit();
-        string getName();
-        string getTel();
-        virtual long salary();
-        virtual void display();
-        friend istream& operator >> (istream& in, Person& a);
-        virtual ~Person() {};
-};
+vector<Person*> listPerson;
+fstream MyFile;
+
+
+void addPerson() {
+    Person temp;
+    cin >> temp;
+    MyFile.open("data.txt",ios::app);
+    if (temp.getUnit()=="Bac si") {
+        int tempDayDr,tempSur;
+
+        cout << "Nhap so ngay lam viec: ";
+        cin >> tempDayDr;
+        cout << "Nhap so ca phau thuat thuc hien: ";
+        cin >> tempSur; cin.ignore();
+        Person *p = new Doctor(temp.getName(),temp.getDob(),temp.getTel(),temp.getUnit(),tempDayDr,tempSur);
+        MyFile << p->getName() << ";" << p->getDob() << ";" << p->getTel() << ";" << p->getUnit() << ";" << tempDayDr << ";" << tempSur << endl;
+        listPerson.push_back(p);
+    } else if (temp.getUnit()=="Y ta") {
+        int tempDayNs,tempShift;
+        cout << "Nhap so ngay lam viec:";
+        cin >> tempDayNs;
+        cout << "Nhap so ca truc dem: ";
+        cin >> tempShift; cin.ignore();
+        Person *p = new Nurse(temp.getName(),temp.getDob(),temp.getTel(),temp.getUnit(),tempDayNs,tempShift);
+        MyFile << p->getName() << ";" << p->getDob() << ";" << p->getTel() << ";" << p->getUnit() << ";" << tempDayNs << ";" << tempShift << endl;
+        listPerson.push_back(p);
+    } else {
+        Person *p = new Person(temp);
+        MyFile << p->getName() << ";" << p->getDob() << ";" << p->getTel() << ";" << p->getUnit() << endl;
+        listPerson.push_back(p);
+    }
+    MyFile.close();
+}
+
+void deletePerson() {}
+void FindPersonHaveSalaryHigherThanX() {
+    long long X;
+    cout << "Nhap so tien ban muon so sanh(vnd): ";cin >> X;
+    vector<Person*> result;
+    for (int i=0;i<listPerson.size();i++) {
+        if (listPerson[i]->salary()>X) {
+            result.push_back(listPerson[i]);
+        }
+    }
+    if (result.size()==0) {
+        cout << "Khong co ai co so tien luong lon hon X: " << X << "(vnd)"<<endl;
+    } else {
+        for (int i=0;i<result.size();i++) {
+            result[i]->display();
+        }
+    }
+}
+void FindPerson_Name () {
+    string N;
+    vector<Person*> result1;
+    cin.ignore();
+    cout << "Nhap ten can bo can tim: "; getline(cin,N);
+    for (int i=0;i<listPerson.size();i++) {
+        if (listPerson[i]->getName()==N) {
+            result1.push_back(listPerson[i]);
+        }
+    }
+    if (result1.size()==0) {
+        cout << "Khong co du lieu can bo: "<< N <<endl;
+    }
+    else {
+        for (int i=0;i<result1.size();i++) {
+            result1[i]->display();
+        }
+    }
+}
+
+void FindPerson_Unit(){
+    string U;
+    vector<Person*> result2;
+    cin.ignore();
+    cout << "Nhap don vi can tim: "; getline(cin,U);cin.ignore();
+    for (int i=0;i<listPerson.size();i++) {
+        if (listPerson[i]->getUnit()==U) {
+            result2.push_back(listPerson[i]);
+        }
+    }
+    if (result2.size()==0) {
+        cout << "Khong co du lieu can bo: "<< U <<endl;
+    }
+    else {
+        for (int i=0;i<result2.size();i++) {
+            result2[i]->display();
+        }
+    }
+}
+
+void FindPerson_Dob(){
+    string D;
+    vector<Person*> result3;
+    cin.ignore();
+    cout << "Nhap thong tin ( dang xx/yy/zzzz): "; getline(cin,D);cin.ignore();
+    for (int i=0;i<listPerson.size();i++) {
+        if (listPerson[i]->getDob()==D) {
+            result3.push_back(listPerson[i]);
+        }
+    }
+    if (result3.size()==0) {
+        cout << "Khong co du lieu can bo: "<< D <<endl;
+    }
+    else {
+        for (int i=0;i<result3.size();i++) {
+            result3[i]->display();
+        }
+    }
+}
+
+void printlistPerson() {
+    if (listPerson.size()==0) {
+        cout << "Danh sach can bo rong rong\n";
+    } else {
+        cout <<"DANH SACH CAN BO\n";
+        for (int i=0;i<listPerson.size();i++) {
+            listPerson[i]->display();
+        }
+    }
+}
+void displayMenu(){
+    int option;
+    while(1){
+
+        cout<<"\tCHUONG TRINH QUAN LY BENH VIEN.\t"<<endl;;
+		cout<<"========================MENU=======================================\n";
+		cout<<"==                                                               ==\n";
+		cout<<"==        1.Them mot can bo.                                     ==\n";
+		cout<<"==        2.Chinh sua thong tin can bo.                          ==\n";
+		cout<<"==        3.Xoa mot can bo.                                      ==\n";
+		cout<<"==        4.Tim kiem can bo theo ten.                            ==\n";
+		cout<<"==        5.Tim kiem can bo theo ngay sinh.                      ==\n";
+		cout<<"==        6.Tim kiem can bo theo don vi.                         ==\n";
+		cout<<"==        7.Can bo co luong thang lon hon X(vnd).                ==\n";
+		cout<<"==        8.Danh sach va thong tin can bo trong thang Y.         ==\n";
+		cout<<"==        9.In danh sach can bo.                                 ==\n";
+		cout<<"==        10.Exit.                                               ==\n";
+		cout<<"===================================================================\n";
+	    cout<<" \t Nhap lua chon can tim: ";cin>>option;
+    switch(option){
+        case 1:
+            addPerson();
+            system("\npause");
+            break;
+
+        case 2:
+
+        case 3:
+
+        case 4:
+            FindPerson_Name ();
+            system("\npause");
+            break;
+
+        case 5:
+            FindPerson_Dob();
+            system("\npause");
+            break;
+
+        case 6:
+            FindPerson_Unit();
+            system("\npause");
+            break;
+
+        case 7:
+            FindPersonHaveSalaryHigherThanX();
+            system("\npause");
+            break;
+
+        case 8:
+
+
+        case 9:
+            printlistPerson();
+            system("\npause");
+            break;
+        case 10:
+            exit(0);
+
+        default:
+            cout << "Khong tim thay du lieu ban nhap, xin moi nhap lai.";
+    }
+    }
+}
+int main() {
+    system("chcp 65001");
+    displayMenu();
+    return 0;
+}
+
+
